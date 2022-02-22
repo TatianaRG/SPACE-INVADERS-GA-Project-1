@@ -7,23 +7,22 @@ body {
   height: 100vh;
   margin: 0;
 }
- 
+
 header {
   display: flex;
   justify-content: center;
-  margin: 20px ;
+  margin: 20px;
 }
 h1 {
-  color:#85ef47;
+  color: #85ef47;
   margin: 10px 50px;
-  background-color:darkcyan;
-  
+  background-color: darkcyan;
 }
 
 .container {
   height: 90vh;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
 }
 
 .grid {
@@ -31,26 +30,47 @@ h1 {
   flex-wrap: wrap;
   height: 600px;
   width: 600px;
-
 }
 
 .grid div {
   width: 40px;
   height: 40px;
   border: 1px solid green;
-  
 }
 .activeAlien {
-background-color: #01005e;
-
+  background-color: #01005e;
 }
 .ship {
   background-color: #ff0000;
-
 }
 .gunLaser {
   background-color: orange;
 }
 .explode {
   background-color: beige;
+}
+.controls-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 20px;
+  background-color: bisque;
+  width: 800px;
+}
+
+#start {
+  color: black;
+  background-color: grey;
+  border-radius: 25px;
+  border: none;
+}
+#restart {
+  color: black;
+  background-color: grey;
+  border-radius: 25px;
+  border: none;
+}
+#score-display {
+  font-size: 25px;
+  color: #ff0000;
 }
