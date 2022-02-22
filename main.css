@@ -14,9 +14,11 @@ header {
   margin: 20px;
 }
 h1 {
-  color: #85ef47;
+  color:#606470;
+  /* font-family:Verdana, Geneva, Tahoma, sans-serif; */
+  font-size: 40px;
   margin: 10px 50px;
-  background-color: darkcyan;
+  /* background-color: darkcyan; */
 }
 
 .container {
@@ -53,22 +55,27 @@ h1 {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  margin: 20px;
-  background-color: bisque;
+  margin: 20px auto;
+  /* background-color: bisque; */
   width: 800px;
+  border: 1px solid green;
+  /* margin-left: auto;
+  margin-right: auto; */
 }
 
-#start {
+/* #start {
   color: black;
   background-color: grey;
   border-radius: 25px;
   border: none;
-}
+} */
 #restart {
-  color: black;
-  background-color: grey;
+  color: green;
+  background-color:#400082;
+  padding: 15px;
   border-radius: 25px;
   border: none;
+  font-size: 17px;
 }
 #score-display {
   font-size: 25px;

@@ -3,10 +3,16 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 console.log('hello');
+
+
+
 // created the cell divs using JS by  grabbing 
 // the class .grid
 const grid = document.querySelector('.grid');
 const score = document.querySelector('#score-display')
+// const startBtn = document.querySelector('#start')
+const restartBtn = document.querySelector('#restart')
+
 // used appendChild to append the newly created divs to the grid
 for (let i = 0; i < 225; i++) {
   const cell = document.createElement('div')
@@ -36,8 +42,10 @@ const aliens = [ 0,1,2,3,4,5,6,7,8,9,
 ]
 // added a .class for every single aliens cell
 function create() {
-  for (let i = 0; i < aliens.length; i++) {
+    for (let i = 0; i < aliens.length; i++) {
+    if (!aliensRemoved.includes(i)) {
     allCells[aliens[i]].classList.add('activeAlien');
+    }
   }
 }
 create();
@@ -68,22 +76,30 @@ function moveAliens() {
       direction = 1
       goingRight = true
     } 
-  }
- // to stop the aliens as soon they reached the last row of the grid
-    if (aliens.some(alien => alien >= 210)) {
-      console.log('GAME OVER')
-      clearInterval(aliensId)
-    }    
-// this changes the direction of everysingle alien +1 index
-  for (let i = 0; i < aliens.length; i++) {
+  }   
+   // this changes the direction of everysingle alien +1 index
+    for (let i = 0; i < aliens.length; i++) {
     aliens[i] = aliens[i] + direction
   }
-  create()
+    create()
+
+
+// to stop the aliens as soon they reached the last row of the grid
+    if (aliens.some(alien => alien >= 210)) {
+      score.innerHTML = `GAME OVER  SCORE: ${points}`
+      clearInterval(aliensId)
+    } 
+    // if (allCells[shipIndex].classList.contains('activeAlien', 'ship')) {
+    //   score.innerHTML = `GAME OVER \n SCORE: ${points}`
+    //   clearInterval(aliensId)
+    // }
+    if (aliensRemoved.length === aliens.length) {
+      score.innerHTML = 'YOU WIN!'
+      clearInterval(aliensId)
+    }
+      
 }  
-
-
-aliensId = setInterval(moveAliens, 500)
-
+aliensId = setInterval(moveAliens,  200)
 
 
 // SHIP MOVEMENT
@@ -124,6 +140,7 @@ function moveShip(event) {
 document.addEventListener('keyup', moveShip);
 
 
+
 // FIRING FUNCTIONS
 
 function shipShooting(){
@@ -141,7 +158,7 @@ function shipShooting(){
     allCells[laserIndex].classList.remove('activeAlien')
     allCells[laserIndex].classList.add('explosion')
   
-    setTimeout(()=> allCells[laserIndex].classList.remove('explosion'), 100)
+    setTimeout(()=> allCells[laserIndex].classList.remove('explosion'),    50)
     clearInterval(laserId)
 
     const removedAlien = aliens.indexOf(laserIndex)
@@ -163,52 +180,19 @@ document.addEventListener('keydown', function keyDownListener(e) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function addLaser() {
-//   allCells[laserIndex].classList.add('gunLaser')
+// function clickStartBtn() {
+//   console.log('clicked')
+//   startBtn.blur()
+//   moveAliens()
 // }
-// addLaser();  
-// function removeLaser() {
-//   allCells[laserIndex].classList.remove('gunLaser')
-// }
-// function shipShooting(startPosition) {
-  
-//   let laserId
+function clickRestartBtn() {
+  window.location.reload()
+}
 
-//   // console.log('hey', laserIndex)
-//   // function moveLaser() 
-//     allCells[startPosition].classList.remove('gunLaser')
-//     startPosition = startPosition - width
-//     allCells[startPosition].classList.add('gunLaser')
 
-    // if (allCells[laserIndex].classList.contains('activeAlien')) {
-    //   allCells[laserIndex].classList.remove('gunlaser')
-    //   allCells[laserIndex].classList.remove('invader')
-    //   allCells[laserIndex].classList.add('explode')
-    // }   
-   
-  //   switch(e.key === 32) {
-  //   case 32 :
-  //   laserId = setInterval(moveLaser, 100)
-  // }
-// } 
+
+
+
+
+// startBtn.addEventListener('click', clickStartBtn)
+restartBtn.addEventListener('click', clickRestartBtn)
