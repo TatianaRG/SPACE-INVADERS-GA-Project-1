@@ -10,8 +10,9 @@ console.log('hello');
 // the class .grid
 const grid = document.querySelector('.grid');
 const score = document.querySelector('#score-display')
-// const startBtn = document.querySelector('#start')
+const startBtn = document.querySelector('#start')
 const restartBtn = document.querySelector('#restart')
+const lives = document.querySelector('#lives')
 
 // used appendChild to append the newly created divs to the grid
 for (let i = 0; i < 225; i++) {
@@ -26,12 +27,12 @@ const width = 15;
 let shipIndex = 217;
 let direction = 1;
 let aliensId;
+let laserId;
 let goingRight = true;
 let aliensRemoved = []
 let points = 0
-
-
-
+let playerLives = 3 
+let bombIndex = 0
 
 
 // ALIENS
@@ -61,7 +62,7 @@ function moveAliens() {
 //  setting the left and right edges
   const leftEdge = aliens[0] % width === 0
   const rightEdge = aliens[aliens.length - 1] % width === width - 1
-  console.log(moveAliens);
+  // console.log(moveAliens);
 
   if (rightEdge && goingRight) {
     for (let i = 0; i < aliens.length; i++) {
@@ -86,7 +87,7 @@ function moveAliens() {
 
 // to stop the aliens as soon they reached the last row of the grid
     if (aliens.some(alien => alien >= 210)) {
-      score.innerHTML = `GAME OVER  SCORE: ${points}`
+      score.innerHTML = 'GAME OVER'
       clearInterval(aliensId)
     } 
     // if (allCells[shipIndex].classList.contains('activeAlien', 'ship')) {
@@ -96,10 +97,11 @@ function moveAliens() {
     if (aliensRemoved.length === aliens.length) {
       score.innerHTML = 'YOU WIN!'
       clearInterval(aliensId)
+      
     }
       
 }  
-aliensId = setInterval(moveAliens,  200)
+aliensId = setInterval(moveAliens,  500)
 
 
 // SHIP MOVEMENT
@@ -126,11 +128,7 @@ function moveShip(event) {
     case 37: // arrow left
       if (horizontalPosition > 0) shipIndex--
       break
-    // case 32: //space bar
-    // shipShooting(shipIndex)
-    //   break
-    // default:
-    //   console.log('INVALID KEY')
+
   }
     
   addShip(shipIndex)
@@ -142,15 +140,18 @@ document.addEventListener('keyup', moveShip);
 
 
 // FIRING FUNCTIONS
+// ship shooting
 
 function shipShooting(){
   let laserIndex = shipIndex;
+  alienAttack()
   function moveLaser() {
     allCells[laserIndex].classList.remove('gunLaser')
     laserIndex = laserIndex - width  
     if (laserIndex < 0) {
       clearInterval(laserId)
     }
+
     allCells[laserIndex].classList.add('gunLaser')
 
     if (allCells[laserIndex].classList.contains('activeAlien')) {   
@@ -163,7 +164,7 @@ function shipShooting(){
 
     const removedAlien = aliens.indexOf(laserIndex)
     aliensRemoved.push(removedAlien) 
-    points++
+    points = points + 10
     score.innerHTML = points
     console.log(aliensRemoved) 
     
@@ -178,21 +179,50 @@ document.addEventListener('keydown', function keyDownListener(e) {
   }
 });
 
-
-
-// function clickStartBtn() {
-//   console.log('clicked')
-//   startBtn.blur()
-//   moveAliens()
-// }
+function clickStartBtn() {
+  console.log('clicked')
+  startBtn.blur()
+  moveAliens()
+}
 function clickRestartBtn() {
   window.location.reload()
 }
-
-
-
-
-
-
 // startBtn.addEventListener('click', clickStartBtn)
 restartBtn.addEventListener('click', clickRestartBtn)
+
+
+
+// ALIENS BOMBS
+function alienAttack() {
+  let randomAlienIndex = aliens[Math.floor(Math.random() * aliens.length)]
+  let bombIndex = randomAlienIndex
+  console.log(bombIndex)
+    
+
+  function dropBomb() {
+    if (allCells[bombIndex].classList.contains('bomb'))
+    allCells[bombIndex].classList.remove('bomb')
+    bombIndex += width
+    if (bombIndex > 224) {
+      clearInterval(bombId)
+      return
+    }
+    allCells[bombIndex].classList.add('bomb')
+
+    if (allCells[bombIndex].classList.contains('ship')) {
+      allCells[bombIndex].classList.remove('bomb')
+      clearInterval(bombId)
+      playerLives--
+      lives.innerHTML = playerLives
+    }
+    if (playerLives  === 0) {
+      clearInterval(bombId)
+      score.innerHTML = 'game over'
+      clearInterval(laserId) 
+      clearInterval(aliensId)  
+
+    }
+
+}
+let bombId = setInterval(dropBomb, 500)
+}

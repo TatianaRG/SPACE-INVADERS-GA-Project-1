@@ -11,14 +11,19 @@ body {
 header {
   display: flex;
   justify-content: center;
-  margin: 20px;
+  width: 436px;
+  height: 200px;
+  margin: 20px auto;
+  background-image: url('./images/476757-spaceinvaderslogo.gif');
+  background-size: auto;
 }
 h1 {
-  color:#606470;
+  /* color:#606470; */
   /* font-family:Verdana, Geneva, Tahoma, sans-serif; */
   font-size: 40px;
   margin: 10px 50px;
-  /* background-color: darkcyan; */
+  
+  background-color: darkcyan;
 }
 
 .container {
@@ -40,13 +45,19 @@ h1 {
   border: 1px solid green;
 }
 .activeAlien {
-  background-color: #01005e;
+  /* background-color: #01005e; */
+  background-image: url('./images/final.png');
+  background-size:cover;
 }
 .ship {
-  background-color: #ff0000;
+  /* background-color: #ff0000; */
+  background-image: url('./images/SeekPng.com_space-ship-png_1581234.png');
+  background-size: cover;
 }
 .gunLaser {
-  background-color: orange;
+  /* background-color: orange; */
+  background-image: url('./images/missiletwo.png');
+  background-size: cover;
 }
 .explode {
   background-color: beige;
@@ -63,15 +74,18 @@ h1 {
   margin-right: auto; */
 }
 
-/* #start {
-  color: black;
-  background-color: grey;
+#start {
+  color:#606470;
+  background-color:#400082;
+  padding: 15px;
   border-radius: 25px;
   border: none;
-} */
+  font-size: 17px;
+}
+
 #restart {
-  color: green;
-  background-color:#400082;
+  color: black;
+  background-color: yellowgreen;
   padding: 15px;
   border-radius: 25px;
   border: none;
@@ -80,4 +94,21 @@ h1 {
 #score-display {
   font-size: 25px;
   color: #ff0000;
+}
+#lives {
+  font-size: 25px;
+  color: #ff0000;
+}
+p{
+  /* background-color: #606470; */
+  font-size: 25px;
+ color: greenyellow;
+}
+.bomb {
+  /* background-color: #606470; */
+  background-image: url('./images/bomb_PNG9.png');
+  background-size:contain;
+}
+.boom {
+  background-color:darkcyan;
 }
