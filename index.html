@@ -18,8 +18,22 @@
     <header>
       <h1></h1>
     </header>
+    <div class="start-game-container">
+      <div class="start-game">
+        <h2>HOW TO PLAY</h2>
+        <p>
+          Welcome to the game! <br />
+          Use the L/R arrow keys to move the ship, and the spacebar to shoot the
+          incoming aliens! <br />
+          Every alien terminated is 10 points, but make sure you get them all
+          before they reach the planet surfaces!
+        </p>
+        <button id="start">Start Game</button>
+        <audio src="./audio/gamestart.wav"
+        class="start-audio"></audio>
+      </div>
+    </div>
     <div class="controls-wrapper">
-      <!-- <button id="start">Start the Game!</button> -->
       <p>Score:<span id="score-display">0</span></p>
       <p>Lives:<span id="lives">3</span></p>
       <button id="restart">Have another Go!</button>

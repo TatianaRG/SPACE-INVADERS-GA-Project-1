@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-
 * {
   box-sizing: border-box;
   background-color: black;
@@ -21,13 +20,11 @@ header {
   background-image: url('./images/476757-spaceinvaderslogo.gif');
   background-size: auto;
 }
-h1 {
-  /* color:#606470; */
-  /* font-family:Verdana, Geneva, Tahoma, sans-serif; */
-  font-size: 40px;
+h1,
+h2 {
+  font-size: 25px;
   margin: 10px 50px;
-  
-  background-color: darkcyan;
+  background-color: white;
 }
 
 .container {
@@ -49,17 +46,14 @@ h1 {
   border: 1px solid green;
 }
 .activeAlien {
-  /* background-color: #01005e; */
   background-image: url('./images/final.png');
-  background-size:cover;
+  background-size: cover;
 }
 .ship {
-  /* background-color: #ff0000; */
   background-image: url('./images/SeekPng.com_space-ship-png_1581234.png');
   background-size: cover;
 }
 .gunLaser {
-  /* background-color: orange; */
   background-image: url('./images/missiletwo.png');
   background-size: cover;
 }
@@ -76,16 +70,17 @@ h1 {
   border: 1px solid green;
   /* margin-left: auto;
   margin-right: auto; */
-  
+  font-size: 25px;
 }
 
 #start {
-  color:#606470;
-  background-color:#400082;
+  color: black;
+  background-color: yellowgreen;
   padding: 15px;
   border-radius: 25px;
   border: none;
-  font-size: 17px;
+  font-size: 10px;
+  font-family: inherit;
 }
 
 #restart {
@@ -105,18 +100,42 @@ h1 {
   font-size: 25px;
   color: #ff0000;
 }
-p{
+p {
   /* background-color: #606470; */
-  font-size: 25px;
- color: greenyellow;
+  /* font-size: 10px; */
+  color: greenyellow;
 }
 .bomb {
   /* background-color: #606470; */
   background-image: url('./images/laserSprite.png');
-  background-size:contain;
+  background-size: contain;
 }
 .boom {
-  background-color:darkcyan;
-   /* background-image: url('./images/boom.png');
+  background-color: darkcyan;
+  /* background-image: url('./images/boom.png');
   background-size:contain; */
+}
+.start-game-container {
+  position: fixed;
+  top: 200px;
+  z-index: 500;
+  width: 100%;
+  height: 350px;
+}
+.start-game {
+  width: 40%;
+  height: 100%;
+  z-index: 600;
+  background-color: black;
+  border: 1px solid limegreen;
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.6;
+  padding: 20px;
+  font-size: 10px;
+}
+.hidden {
+  display: none;
 }

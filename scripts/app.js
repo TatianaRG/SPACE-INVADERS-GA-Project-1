@@ -16,12 +16,30 @@ const lives = document.querySelector('#lives')
 const gameoverAudio = document.querySelector('.gameover-audio')
 const laserAudio = document.querySelector('.laser-audio')
 const winAudio = document.querySelector('.win-audio')
+const startAudio = document.querySelector('.start-audio')
+const startContainer = document.querySelector('.start-game-container')
+const main = document.querySelector('.controls-wrapper')
 
 // used appendChild to append the newly created divs to the grid
 for (let i = 0; i < 225; i++) {
   const cell = document.createElement('div')
   grid.appendChild(cell);
 }
+
+function startGame() {
+  startContainer.classList.add('hidden')
+  main.classList.remove('hidden')
+  startAudio.play()
+}
+startBtn.addEventListener('click', startGame)
+
+function clickRestartBtn() {
+  window.location.reload()
+  
+}
+restartBtn.addEventListener('click', clickRestartBtn)
+
+
 
 // VARIABLES
 
@@ -103,8 +121,7 @@ function moveAliens() {
       clearInterval(aliensId)
       winAudio.play()     
       
-    }
-      
+    } 
 }  
 aliensId = setInterval(moveAliens,  500)
 
@@ -133,7 +150,6 @@ function moveShip(event) {
     case 37: // arrow left
       if (horizontalPosition > 0) shipIndex--
       break
-
   }
     
   addShip(shipIndex)
@@ -183,17 +199,6 @@ document.addEventListener('keydown', function keyDownListener(e) {
   }
 });
 
-// function clickStartBtn() {
-//   console.log('clicked')
-//   startBtn.blur()
-//   moveAliens()
-// }
-function clickRestartBtn() {
-  window.location.reload()
-}
-// startBtn.addEventListener('click', clickStartBtn)
-restartBtn.addEventListener('click', clickRestartBtn)
-
 
 
 // ALIENS BOMBS
@@ -203,7 +208,6 @@ function alienAttack() {
   let bombId = setInterval(dropBomb, 500)
   laserAudio.play()
   // console.log(bombIndex)
-    
 
   function dropBomb() {
     if (allCells[bombIndex].classList.contains('bomb'))
@@ -221,14 +225,6 @@ function alienAttack() {
       playerLives--
       lives.innerHTML = playerLives
     }
-      // if (allCells[bombIndex].classList.contains('gunLaser') && allCells[bombIndex].classList.contains('bomb')) {
-      //   allCells[bombIndex].classList.remove('bomb')
-      //   allCells[bombIndex].classList.remove('gunLaser')
-      //   // allCells[bombIndex].classList.add('boom') 
-      //   console.log('bomb hit')
-      // }
-      // // setTimeout(()=> allCells[bombIndex].classList.remove('boom'), 400)
-      // clearInterval(bombId)
 
     if (playerLives  === 0) {
       clearInterval(bombId)
@@ -236,9 +232,7 @@ function alienAttack() {
       clearInterval(laserId) 
       clearInterval(aliensId)
       gameoverAudio.play()  
-
     }
-
 }
 
 }
