@@ -13,6 +13,9 @@ const score = document.querySelector('#score-display')
 const startBtn = document.querySelector('#start')
 const restartBtn = document.querySelector('#restart')
 const lives = document.querySelector('#lives')
+const gameoverAudio = document.querySelector('.gameover-audio')
+const laserAudio = document.querySelector('.laser-audio')
+const winAudio = document.querySelector('.win-audio')
 
 // used appendChild to append the newly created divs to the grid
 for (let i = 0; i < 225; i++) {
@@ -89,6 +92,7 @@ function moveAliens() {
     if (aliens.some(alien => alien >= 210)) {
       score.innerHTML = 'GAME OVER'
       clearInterval(aliensId)
+      gameoverAudio.play()
     } 
     // if (allCells[shipIndex].classList.contains('activeAlien', 'ship')) {
     //   score.innerHTML = `GAME OVER \n SCORE: ${points}`
@@ -97,6 +101,7 @@ function moveAliens() {
     if (aliensRemoved.length === aliens.length) {
       score.innerHTML = 'YOU WIN!'
       clearInterval(aliensId)
+      winAudio.play()     
       
     }
       
@@ -141,7 +146,6 @@ document.addEventListener('keyup', moveShip);
 
 // FIRING FUNCTIONS
 // ship shooting
-
 function shipShooting(){
   let laserIndex = shipIndex;
   alienAttack()
@@ -159,7 +163,7 @@ function shipShooting(){
     allCells[laserIndex].classList.remove('activeAlien')
     allCells[laserIndex].classList.add('explosion')
   
-    setTimeout(()=> allCells[laserIndex].classList.remove('explosion'),    50)
+    setTimeout(()=> allCells[laserIndex].classList.remove('explosion'),  50)
     clearInterval(laserId)
 
     const removedAlien = aliens.indexOf(laserIndex)
@@ -179,11 +183,11 @@ document.addEventListener('keydown', function keyDownListener(e) {
   }
 });
 
-function clickStartBtn() {
-  console.log('clicked')
-  startBtn.blur()
-  moveAliens()
-}
+// function clickStartBtn() {
+//   console.log('clicked')
+//   startBtn.blur()
+//   moveAliens()
+// }
 function clickRestartBtn() {
   window.location.reload()
 }
@@ -196,7 +200,8 @@ restartBtn.addEventListener('click', clickRestartBtn)
 function alienAttack() {
   let randomAlienIndex = aliens[Math.floor(Math.random() * aliens.length)]
   let bombIndex = randomAlienIndex
-  let bombId = setInterval(dropBomb, 100)
+  let bombId = setInterval(dropBomb, 500)
+  laserAudio.play()
   // console.log(bombIndex)
     
 
@@ -229,7 +234,8 @@ function alienAttack() {
       clearInterval(bombId)
       score.innerHTML = 'GAME OVER'
       clearInterval(laserId) 
-      clearInterval(aliensId)  
+      clearInterval(aliensId)
+      gameoverAudio.play()  
 
     }
 
