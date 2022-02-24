@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
 * {
   box-sizing: border-box;
   background-color: black;
@@ -6,6 +9,7 @@
 body {
   height: 100vh;
   margin: 0;
+  font-family: 'Press Start 2P', cursive;
 }
 
 header {
@@ -68,10 +72,11 @@ h1 {
   align-items: center;
   margin: 20px auto;
   /* background-color: bisque; */
-  width: 800px;
+  width: 850px;
   border: 1px solid green;
   /* margin-left: auto;
   margin-right: auto; */
+  
 }
 
 #start {
@@ -89,7 +94,8 @@ h1 {
   padding: 15px;
   border-radius: 25px;
   border: none;
-  font-size: 17px;
+  font-size: 10px;
+  font-family: inherit;
 }
 #score-display {
   font-size: 25px;
@@ -106,9 +112,11 @@ p{
 }
 .bomb {
   /* background-color: #606470; */
-  background-image: url('./images/bomb_PNG9.png');
+  background-image: url('./images/laserSprite.png');
   background-size:contain;
 }
 .boom {
   background-color:darkcyan;
+   /* background-image: url('./images/boom.png');
+  background-size:contain; */
 }

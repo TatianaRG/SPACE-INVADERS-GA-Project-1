@@ -38,8 +38,8 @@ let bombIndex = 0
 // ALIENS
 // create the aliens array
 const aliens = [ 0,1,2,3,4,5,6,7,8,9,
-  15,16,17,18,19,20,21,22,23,24,
-  30,31,32,33,34,35,36,37,38,39
+  16,17,18,19,20,21,22,23,
+  30,31,32,33,34,35,36,37,38,39,
 ]
 // added a .class for every single aliens cell
 function create() {
@@ -166,7 +166,7 @@ function shipShooting(){
     aliensRemoved.push(removedAlien) 
     points = points + 10
     score.innerHTML = points
-    console.log(aliensRemoved) 
+    // console.log(aliensRemoved) 
     
   }
 
@@ -196,7 +196,8 @@ restartBtn.addEventListener('click', clickRestartBtn)
 function alienAttack() {
   let randomAlienIndex = aliens[Math.floor(Math.random() * aliens.length)]
   let bombIndex = randomAlienIndex
-  console.log(bombIndex)
+  let bombId = setInterval(dropBomb, 100)
+  // console.log(bombIndex)
     
 
   function dropBomb() {
@@ -215,14 +216,23 @@ function alienAttack() {
       playerLives--
       lives.innerHTML = playerLives
     }
+      // if (allCells[bombIndex].classList.contains('gunLaser') && allCells[bombIndex].classList.contains('bomb')) {
+      //   allCells[bombIndex].classList.remove('bomb')
+      //   allCells[bombIndex].classList.remove('gunLaser')
+      //   // allCells[bombIndex].classList.add('boom') 
+      //   console.log('bomb hit')
+      // }
+      // // setTimeout(()=> allCells[bombIndex].classList.remove('boom'), 400)
+      // clearInterval(bombId)
+
     if (playerLives  === 0) {
       clearInterval(bombId)
-      score.innerHTML = 'game over'
+      score.innerHTML = 'GAME OVER'
       clearInterval(laserId) 
       clearInterval(aliensId)  
 
     }
 
 }
-let bombId = setInterval(dropBomb, 500)
+
 }
