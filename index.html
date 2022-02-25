@@ -6,12 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./main.css" />
     <title>Space Invaders</title>
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap"
-      rel="stylesheet"
-    /> -->
+    <link rel="shortcut icon" href="#" />
   </head>
 
   <body>
@@ -25,30 +20,22 @@
           Welcome to the game! <br />
           Use the L/R arrow keys to move the ship, and the spacebar to shoot the
           incoming aliens! <br />
-          Every alien terminated is 10 points, but make sure you get them all
-          before they reach the planet surfaces!
+          Every alien terminated is 10 points!  
         </p>
         <button id="start">Start Game</button>
-        <audio src="./audio/gamestart.wav"
-        class="start-audio"></audio>
+        <audio src="./audio/gamestart.wav" class="start-audio"></audio>
       </div>
     </div>
     <div class="controls-wrapper">
       <p>Score:<span id="score-display">0</span></p>
       <p>Lives:<span id="lives">3</span></p>
       <button id="restart">Have another Go!</button>
-      <audio src="./audio/gameover.wav"
-      class="gameover-audio"
-      ></audio>
-      <audio src="./audio/win.wav"
-      class="win-audio"
-      ></audio>
+      <audio src="./audio/gameover.wav" class="gameover-audio"></audio>
+      <audio src="./audio/win.wav" class="win-audio"></audio>
     </div>
     <div class="container">
       <div class="grid"></div>
-      <audio src="./audio/laser.wav"
-      class="laser-audio"
-      ></audio>
+      <audio src="./audio/laser.wav" class="laser-audio"></audio>
     </div>
     <script src="./scripts/app.js"></script>
   </body>

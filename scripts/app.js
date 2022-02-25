@@ -25,13 +25,18 @@ for (let i = 0; i < 225; i++) {
   const cell = document.createElement('div')
   grid.appendChild(cell);
 }
+/// STARTGAME FUNCTION
+ const startTimeout = setTimeout(startAudio.play(), 5000)
+ clearTimeout(startTimeout)
 
 function startGame() {
-  startContainer.classList.add('hidden')
   main.classList.remove('hidden')
-  startAudio.play()
+  startContainer.classList.add('hidden')
+  remove()
+  aliensId = setInterval(moveAliens,  500)
 }
 startBtn.addEventListener('click', startGame)
+
 
 function clickRestartBtn() {
   window.location.reload()
@@ -123,7 +128,7 @@ function moveAliens() {
       
     } 
 }  
-aliensId = setInterval(moveAliens,  500)
+// aliensId = setInterval(moveAliens,  500)
 
 
 // SHIP MOVEMENT
@@ -171,15 +176,13 @@ function shipShooting(){
     if (laserIndex < 0) {
       clearInterval(laserId)
     }
-
+    if (laserIndex >= 0) {
     allCells[laserIndex].classList.add('gunLaser')
-
-    if (allCells[laserIndex].classList.contains('activeAlien')) {   
+     if (allCells[laserIndex].classList.contains('activeAlien')) {   
     allCells[laserIndex].classList.remove('gunLaser')
     allCells[laserIndex].classList.remove('activeAlien')
     allCells[laserIndex].classList.add('explosion')
-  
-    setTimeout(()=> allCells[laserIndex].classList.remove('explosion'),  50)
+     setTimeout(()=> allCells[laserIndex].classList.remove('explosion'),  50)
     clearInterval(laserId)
 
     const removedAlien = aliens.indexOf(laserIndex)
@@ -187,7 +190,7 @@ function shipShooting(){
     points = points + 10
     score.innerHTML = points
     // console.log(aliensRemoved) 
-    
+    }
   }
 
   }
@@ -222,7 +225,7 @@ function alienAttack() {
     if (allCells[bombIndex].classList.contains('ship')) {
       allCells[bombIndex].classList.remove('bomb')
       clearInterval(bombId)
-      playerLives--
+      playerLives = playerLives - 1 //// && !playerLives <= 0
       lives.innerHTML = playerLives
     }
 
