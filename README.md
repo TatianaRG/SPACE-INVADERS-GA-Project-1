@@ -15,7 +15,10 @@ Move the spaceship LEFT (<-) and RIGHT (->) using the arrow keys.
 Hit SPACEBAR to shoot.
 
 ---
-![gif-for-spaceinvaders](media/spaceinvaders.gif)
+
+<p align="center">
+  <img src="media/spaceinvaders.gif" alt="gif-game" />
+</p>
 
 ---
 ### Technologies Used
